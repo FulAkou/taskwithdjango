@@ -1,0 +1,20 @@
+{% extends "task/base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<div class="frontpage">
+    <h1>{{ title }}</h1>
+    <h2>Test</h2>
+    <h2>Test2</h2>
+
+    {% for task in tasks %}
+        <div>
+            <h3>{{ task.title }}</h3>
+        </div>
+        <div>
+            <p>{{ task.description }}</p>
+        </div>
+    {% endfor %}
+
+
+</div>
+{% endblock %}

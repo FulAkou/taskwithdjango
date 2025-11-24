@@ -19,7 +19,8 @@
 
 {% for category in categories %}
     <div>
-        <h3>{{ category.title }}</h3>
+
+        <p> <a href="{% url 'category_detail' category.id %}">{{ category.title }}</a> </p>
     </div>
 {% endfor %}
 

@@ -4,14 +4,16 @@
 <div class="frontpage">
     <h1>{{ title }}</h1>
     <h2>Test</h2>
-    <h2>Test2</h2>
+
+    <form method="post", action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Submit</button>
+    </form>
 
     {% for task in tasks %}
         <div>
             <h3>{{ task.title }}</h3>
-        </div>
-        <div>
-            <p>{{ task.description }}</p>
         </div>
     {% endfor %}
 

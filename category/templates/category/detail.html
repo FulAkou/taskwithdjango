@@ -6,9 +6,7 @@
 <div class="frontpage">
     <h1>{{ category.title }}</h1>
     {% for task in category.tasks.all %}
-        <div class="task">
-            <p>{{ task.title }}</p>
-        </div>
+        {% include 'task/partials/tasks.html' %}
     {% endfor %}
 </div>
 

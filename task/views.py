@@ -31,3 +31,16 @@ def edit_task(request, pk):
         form = TaskForm(instance=task)
 
     return render(request, 'task/edit.html', {'form': form})
+
+
+def mark_completed(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.is_done = True
+    task.save()
+    return redirect('frontpage')
+
+
+def delete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.delete()
+    return redirect('frontpage')

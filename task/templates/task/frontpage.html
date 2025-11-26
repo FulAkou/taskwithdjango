@@ -12,10 +12,7 @@
     </form>
 
     {% for task in tasks %}
-        <div>
-            <h3>{{ task.title }}</h3>
-            <p><a href="{% url 'edit_task' task.pk %}">Edit</a></p>
-        </div>
+        {% include 'task/partials/tasks.html' %}
     {% endfor %}
 
     <hr>

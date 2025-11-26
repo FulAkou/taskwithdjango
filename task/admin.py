@@ -4,7 +4,7 @@ from .models import Task
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ("title", "is_done")
+    list_display = ("title", )
     list_filter = ("is_done",)
     search_fields = ("title","description")
 

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
 from category.models import Category
@@ -18,6 +19,18 @@ def frontpage(request):
         form = TaskForm()
 
     return render(request, 'task/frontpage.html', {'title': title, 'tasks': tasks, 'categories': categories, 'form': form})
+
+
+def search(request):
+    query = request.GET.get('query','')
+
+    if query:
+        tasks =Task.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+    else:
+        tasks = []
+
+    return render(request, 'task/search.html', {'query': query, 'tasks': tasks})
+
 
 
 def edit_task(request, pk):

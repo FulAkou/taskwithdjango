@@ -1,0 +1,16 @@
+{% extends "task/base.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<div class="frontpage">
+    <h1>Search results</h1>
+    <p>You searched for "{{ query }}" which gave {{ tasks.count }} results.</p>
+
+
+
+    {% for task in tasks %}
+        {% include 'task/partials/tasks.html' %}
+        {% empty %}
+        <p>No tasks found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

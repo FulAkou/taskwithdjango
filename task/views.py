@@ -7,7 +7,7 @@ from .forms import TaskForm
 # Create your views here.
 def frontpage(request):
     title= "This is a Front Page"
-    tasks = Task.objects.filter(is_done=True)
+    tasks = Task.objects.filter(is_done=False)
     categories = Category.objects.all()
 
     if request.method == 'POST':

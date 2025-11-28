@@ -1,14 +1,16 @@
- <div>
-     <h3>{{ task.title }}</h3>
-     <p><a href="{% url 'edit_task' task.pk %}">Edit</a></p>
-     <p>
-         {% if task.is_done %}
-             Completed
-         {% else %}
-             <a href="{% url 'mark_completed' task.pk %}">Mark as Done</a>
-         {% endif %}
-     </p>
-     <p>
-         <a href="{% url 'delete_task' task.pk %}">Delete</a>
-     </p>
+ <div class="bg-gray-100 p-4 rounded-xl">
+     <p class="font-bold">{{ task.title }}</p>
+    <div class="flex space-x-4">
+        <p>
+            {% if task.is_done %}
+                Completed
+            {% else %}
+                <a href="{% url 'mark_completed' task.pk %}" class="text-emerald-500">Mark as Done</a>
+            {% endif %}
+        </p>
+        <p><a href="{% url 'edit_task' task.pk %}" class="text-yellow-500">Edit</a></p>
+        <p>
+            <a href="{% url 'delete_task' task.pk %}" class="text-rose-600">Delete</a>
+        </p>
+    </div>
  </div>

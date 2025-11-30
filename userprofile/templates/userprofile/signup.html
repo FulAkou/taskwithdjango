@@ -1,0 +1,15 @@
+{% extends "task/base.html" %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+<div class="frontpage">
+    <h1 class="text-xl mb-6">Sign up</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="py-4 px-8 bg-purple-800 text-white rounded-xl ">S'inscrire</button>
+    </form>
+</div>
+
+{% endblock %}

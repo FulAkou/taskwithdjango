@@ -1,5 +1,9 @@
- <div class="bg-gray-100 p-4 rounded-xl">
+{% load humanize %}
+<div class="bg-gray-100 p-4 rounded-xl">
      <p class="font-bold">{{ task.title }}</p>
+     <time class="text-sm text-gray-500">{{ task.created_at|date:"d M Y H:i" }}</time>
+     <time class="text-sm text-gray-500">{{ task.created_at|naturaltime }}</time>
+
     <div class="flex space-x-4">
         <p>
             {% if task.is_done %}

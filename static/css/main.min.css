@@ -194,26 +194,11 @@
   .flex {
     display: flex;
   }
-  .table {
-    display: table;
-  }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
-  }
   .w-1\/3 {
     width: calc(1/3 * 100%);
   }
-  .w-2 {
-    width: calc(var(--spacing) * 2);
-  }
   .w-2\/3 {
     width: calc(2/3 * 100%);
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
   }
   .items-center {
     align-items: center;
@@ -307,13 +292,6 @@
   .text-yellow-500 {
     color: var(--color-yellow-500);
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .hover\:bg-purple-700 {
     &:hover {
       @media (hover: hover) {
@@ -359,11 +337,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -371,7 +344,6 @@
       --tw-space-x-reverse: 0;
       --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
     }
   }
 }

@@ -9,13 +9,15 @@ from .forms import TaskForm
 @login_required
 def frontpage(request):
     title= "This is a Front Page"
-    tasks = Task.objects.filter(is_done=False)
+    tasks = Task.objects.filter(user=request.user).filter(is_done=False)
     categories = Category.objects.all()
 
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
             return redirect('frontpage')
     else:
         form = TaskForm()
@@ -27,7 +29,7 @@ def search(request):
     query = request.GET.get('query','')
 
     if query:
-        tasks =Task.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        tasks =Task.objects.filter(user=request.user).filter(Q(title__icontains=query) | Q(description__icontains=query))
     else:
         tasks = []
 
@@ -36,7 +38,7 @@ def search(request):
 
 @login_required
 def edit_task(request, pk):
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(Task, pk=pk, user=request.user)
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
@@ -49,13 +51,13 @@ def edit_task(request, pk):
 
 @login_required
 def mark_completed(request, pk):
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(Task, pk=pk, user=request.user)
     task.is_done = True
     task.save()
     return redirect('frontpage')
 
 @login_required
 def delete_task(request, pk):
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(Task, pk=pk, user=request.user)
     task.delete()
     return redirect('frontpage')

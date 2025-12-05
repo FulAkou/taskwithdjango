@@ -11,3 +11,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+    def number_of_tasks(self):
+        return self.tasks.count()

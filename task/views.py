@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
 from category.models import Category
@@ -21,6 +22,15 @@ def frontpage(request):
             return redirect('frontpage')
     else:
         form = TaskForm()
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(tasks, 4)
+        try:
+            tasks = paginator.page(page)
+        except PageNotAnInteger:
+            tasks = paginator.page(1)
+        except EmptyPage:
+            tasks = paginator.page(paginator.num_pages)
 
     return render(request, 'task/frontpage.html', {'title': title, 'tasks': tasks, 'categories': categories, 'form': form})
 
